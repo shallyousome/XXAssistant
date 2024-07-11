@@ -2,16 +2,15 @@ namespace XXAssistant
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        static void Main(string[] arge)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            bool istop = false;
+            if (arge.Length > 0) { if (arge[0] == "t") istop = true; }
+            //AntdUI.Localization.Provider = new Localizer();
+            AntdUI.Config.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new AutoStall(istop));
         }
     }
 }
