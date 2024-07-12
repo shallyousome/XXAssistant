@@ -1,4 +1,6 @@
-﻿namespace XXAssistant
+﻿using AntdUI;
+
+namespace XXAssistant
 {
     partial class AutoStall
     {
@@ -27,16 +29,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            progress4 = new AntdUI.Progress();
-            progress5 = new AntdUI.Progress();
-            iComplete1 = new AntdUI.Icon.IconComplete();
-            progress6 = new AntdUI.Progress();
-            iError2 = new AntdUI.Icon.IconError();
-            progress7 = new AntdUI.Progress();
-            progress8 = new AntdUI.Progress();
-            progress9 = new AntdUI.Progress();
-            panel_top = new Panel();
-            label_title = new Label();
+            rad_Scan = new AntdUI.Radio();
+            rad_SetPrice = new AntdUI.Radio();            
+            iError2 = new AntdUI.Icon.IconError();            
+            panel_top = new AntdUI.Panel();
+            label_title = new AntdUI.Label();
             btn_min = new AntdUI.Button();
             btn_max = new AntdUI.Button();
             btn_close = new AntdUI.Button();
@@ -45,39 +42,25 @@
             panel_top.SuspendLayout();
             SuspendLayout();
             // 
-            // progress4
+            // rad_Scan
             // 
-            progress4.ContainerControl = this;
-            progress4.Location = new Point(0, 0);
-            progress4.Name = "progress4";
-            progress4.Size = new Size(0, 0);
-            progress4.TabIndex = 21;
+            rad_Scan.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            rad_Scan.Location = new Point(40, 80);
+            rad_Scan.Name = "rad_Scan";
+            rad_Scan.Size = new Size(117, 43);
+            rad_Scan.TabIndex = 1;
+            rad_Scan.Text = "扫描背包";
             // 
-            // progress5
+            // rad_SetPrice
             // 
-            progress5.ContainerControl = this;
-            progress5.Location = new Point(0, 0);
-            progress5.Name = "progress5";
-            progress5.Size = new Size(0, 0);
-            progress5.TabIndex = 19;
-            // 
-            // iComplete1
-            // 
-            iComplete1.Anchor = AnchorStyles.None;
-            iComplete1.Back = Color.Transparent;
-            iComplete1.Color = Color.FromArgb(0, 204, 0);
-            iComplete1.Location = new Point(35, 35);
-            iComplete1.Name = "iComplete1";
-            iComplete1.Size = new Size(40, 40);
-            iComplete1.TabIndex = 11;
-            // 
-            // progress6
-            // 
-            progress6.ContainerControl = this;
-            progress6.Location = new Point(0, 0);
-            progress6.Name = "progress6";
-            progress6.Size = new Size(0, 0);
-            progress6.TabIndex = 17;
+            rad_SetPrice.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            rad_SetPrice.Location = new Point(210, 80);
+            rad_SetPrice.Name = "rad_SetPrice";
+            rad_SetPrice.Size = new Size(115, 43);
+            rad_SetPrice.TabIndex = 1;
+            rad_SetPrice.Text = "自动定价";
+           
+           
             // 
             // iError2
             // 
@@ -85,30 +68,8 @@
             iError2.Name = "iError2";
             iError2.Size = new Size(0, 0);
             iError2.TabIndex = 0;
-            // 
-            // progress7
-            // 
-            progress7.ContainerControl = this;
-            progress7.Location = new Point(0, 0);
-            progress7.Name = "progress7";
-            progress7.Size = new Size(0, 0);
-            progress7.TabIndex = 20;
-            // 
-            // progress8
-            // 
-            progress8.ContainerControl = this;
-            progress8.Location = new Point(0, 0);
-            progress8.Name = "progress8";
-            progress8.Size = new Size(0, 0);
-            progress8.TabIndex = 18;
-            // 
-            // progress9
-            // 
-            progress9.ContainerControl = this;
-            progress9.Location = new Point(0, 0);
-            progress9.Name = "progress9";
-            progress9.Size = new Size(0, 0);
-            progress9.TabIndex = 16;
+            
+            
             // 
             // panel_top
             // 
@@ -130,7 +91,7 @@
             label_title.Padding = new Padding(10, 0, 0, 0);
             label_title.Size = new Size(1142, 40);
             label_title.TabIndex = 0;
-            label_title.Text = "寻仙摆摊助手";
+            label_title.Text = "Demo";
             label_title.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btn_min
@@ -192,12 +153,8 @@
             BackColor = Color.White;
             ClientSize = new Size(1300, 720);
             Controls.Add(panel_top);
-            Controls.Add(progress9);
-            Controls.Add(progress6);
-            Controls.Add(progress8);
-            Controls.Add(progress5);
-            Controls.Add(progress7);
-            Controls.Add(progress4);
+            Controls.Add(rad_SetPrice);
+            Controls.Add(rad_Scan);
             Font = new Font("Microsoft YaHei UI Light", 12F);
             ForeColor = Color.Black;
             Margin = new Padding(3, 4, 3, 4);
@@ -210,16 +167,11 @@
         }
 
         #endregion
-        private AntdUI.Progress progress4;
-        private AntdUI.Progress progress5;
-        private AntdUI.Progress progress6;
-        private AntdUI.Icon.IconComplete iComplete1;
-        private AntdUI.Icon.IconError iError2;
-        private AntdUI.Progress progress7;
-        private AntdUI.Progress progress8;
-        private AntdUI.Progress progress9;
-        private Panel panel_top;
-        private Label label_title;
+        private AntdUI.Radio rad_Scan;
+        private AntdUI.Radio rad_SetPrice;
+        private AntdUI.Icon.IconError iError2;        
+        private AntdUI.Panel panel_top;
+        private AntdUI.Label label_title;
         private AntdUI.Button btn_close;
         private AntdUI.Button btn_min;
         private AntdUI.Button btn_max;

@@ -2,15 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
+    <UseWindowsForms>True</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AntdUI" Version="1.4.4" />
     <PackageReference Include="MouseKeyHook" Version="5.7.1" />
+    <PackageReference Include="PaddleOCRSharp" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Util\" />
   </ItemGroup>
 
 </Project>
