@@ -3,6 +3,7 @@ using PaddleOCRSharp;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using XXAssistant.Util;
 
 namespace XXAssistant
 {
@@ -15,8 +16,9 @@ namespace XXAssistant
 V1.1内容
 1.获取当前可收购物品实时价格
 2.增加界面日志输出
+3.按键可配置
 */
-    public partial class AutoStall : AntdUI.Window
+    public partial class AutoStall : GeneralForm
     {
         private int i_Interval = 200;
         private bool IsEnd = true;//操作是否已完成
@@ -26,10 +28,9 @@ V1.1内容
         public AutoStall(bool top)
         {
             InitializeComponent();
-            TopMost = top;
-            SubscribeHook();
-            AddEvent(Keys.Home, Operate);
-            AddEvent(Keys.End, Stop);
+            TopMost = top;            
+            GlobalHook.AddEvent(Keys.Home, Operate);
+            GlobalHook.AddEvent(Keys.End, Stop);
             //加载列表
             //如果列表为空,选中扫描 否则选中定价
             //可调整抓图间隔
@@ -102,13 +103,13 @@ V1.1内容
                     Error("未获取到活动窗口");
                     return;
                 }
-                var folderPath = AppDomain.CurrentDomain.BaseDirectory + "/setprice/";
+                var folderPath = AppDomain.CurrentDomain.BaseDirectory + "/current/";
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
                 }
                 //清理截图
-                CleanFile(folderPath);
+                FileUtil.CleanFile(folderPath);
                 while (!IsEnd)
                 {
                     var currentHandler = WindowCapture.GetForegroundWindow();
@@ -153,7 +154,7 @@ V1.1内容
                     Directory.CreateDirectory(folderPath);
                 }
                 //清理截图
-                CleanFile(folderPath);
+                FileUtil.CleanFile(folderPath);
                 while (!IsEnd)
                 {
 
@@ -193,120 +194,8 @@ V1.1内容
                 Error($"扫描出错:{ex.Message}");
             }
         }
-        /// <summary>
-        /// 清理文件夹
-        /// </summary>
-        /// <param name="filepath"></param>
-        public void CleanFile(string folderPath)
-        {
-            if (Directory.Exists(folderPath))
-            {
-                foreach (string filePath in Directory.GetFiles(folderPath))
-                {
-                    File.Delete(filePath);
-                }
+       
 
-                foreach (string directoryPath in Directory.GetDirectories(folderPath))
-                {
-                    CleanFile(directoryPath);
-                    Directory.Delete(directoryPath);
-                }
-            }
-        }
-        private void Notify(string message)
-        {
-            AntdUI.Notification.success(this, "提示", message, AntdUI.TAlignFrom.Top, Font);
-        }
-        private void Error(string message)
-        {
-            AntdUI.Notification.error(this, "错误", message, AntdUI.TAlignFrom.Top, Font);
-        }
-        #region 窗体事件
-        //窗口可拖动
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            DraggableMouseDown();
-            base.OnMouseDown(e);
-        }
-        private void btn_close_Click(object? sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btn_min_Click(object? sender, EventArgs e)
-        {
-            Min();
-        }
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            if (WindowState == FormWindowState.Maximized)
-            {
-                btn_max.Image = Properties.Resources.app_max2b;
-            }
-            else
-            {
-                btn_max.Image = Properties.Resources.app_maxb;
-            }
-            base.OnSizeChanged(e);
-        }
-
-        private void btn_max_Click(object sender, EventArgs e)
-        {
-            MaxRestore();
-        }
-        private void Button_Click(object? sender, EventArgs e)
-        {
-
-        }
-        #endregion
-        #region 全局钩子
-        private Dictionary<Keys,Action> dic_Event= new Dictionary<Keys,Action>();
-        private IKeyboardMouseEvents m_GlobalHook;
-        public void SubscribeHook()
-        {
-            // Note: for the application hook, use the Hook.AppEvents() instead
-            m_GlobalHook = Hook.GlobalEvents();
-            //m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
-            //m_GlobalHook.KeyPress += GlobalHookKeyPress;//KeyPress只能检测到字符键,无法检测到非字符键
-            m_GlobalHook.KeyDown+= GlobalHookKeyDown;
-        }
-        /// <summary>
-        /// 注册按键事件
-        /// </summary>
-        /// <param name="key">键值</param>
-        /// <param name="action">事件</param>
-        private void AddEvent(Keys key,Action action)
-        {
-            dic_Event[key] = action;
-        }
-        private void GlobalHookKeyDown(object? sender, KeyEventArgs e)
-        {
-            if (dic_Event.ContainsKey(e.KeyCode))
-            {
-                var toExecute = dic_Event[e.KeyCode];
-                Task.Run(toExecute);
-            }           
-        }
-        private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
-        {              
-            Notify($"KeyPress: \t{e.KeyChar}");              
-        }
-
-        private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
-        {
-            Notify($"MouseDown: \t{e.Button}; \t System Timestamp: \t{e.Timestamp}");
-
-        }
-
-        public void UnsubscribeHook()
-        {
-            m_GlobalHook.MouseDownExt -= GlobalHookMouseDownExt;
-            m_GlobalHook.KeyPress -= GlobalHookKeyPress;
-            m_GlobalHook.KeyDown-= GlobalHookKeyDown;
-            //It is recommened to dispose it
-            m_GlobalHook.Dispose();
-        }
-        #endregion
 
     }
 }

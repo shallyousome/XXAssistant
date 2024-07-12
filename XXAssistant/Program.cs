@@ -10,7 +10,10 @@ namespace XXAssistant
             AntdUI.Config.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AutoStall(istop));
+            //Application.Run(new AutoStall(istop));
+            //Application.Run(new NuhaiClock(istop));
+            Application.Run(new AutoResurrect(istop));
+            //払移阻。。。。
         }
     }
 }

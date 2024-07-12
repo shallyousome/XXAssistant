@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -44,6 +45,18 @@ namespace XXAssistant
             DeleteDC(hdcDest);
             ReleaseDC(hwnd, hdcSrc);
             return bmp;
+        }
+        public static Bitmap CaptureFullScreen()
+        {
+            Rectangle bounds = Screen.PrimaryScreen.Bounds;
+            Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.CopyFromScreen(bounds.X, bounds.Y, 0, 0, bounds.Size);
+            }
+            return bitmap;
+
+          
         }
 
         [DllImport("gdi32.dll")]
