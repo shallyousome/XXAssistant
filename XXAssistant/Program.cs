@@ -13,7 +13,7 @@ namespace XXAssistant
             //Application.Run(new AutoStall(istop));
             //Application.Run(new NuhaiClock(istop));
             Application.Run(new AutoResurrect(istop));
-            //失败了。。。。
+            //失败了。。。。 =>需要管理员方式运行
         }
     }
 }

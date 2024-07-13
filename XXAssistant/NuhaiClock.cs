@@ -1,5 +1,4 @@
 using Gma.System.MouseKeyHook;
-using PaddleOCRSharp;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -21,8 +20,8 @@ V1.1内容
         private int i_Interval = 200;
         private bool IsEnd = true;//操作是否已完成
         //ocr
-        private PaddleOCREngine engine;
-        private PaddleStructureEngine structengine;
+        //private PaddleOCREngine engine;
+        //private PaddleStructureEngine structengine;
         /*
          保存计时配置
          

@@ -1,5 +1,4 @@
 using Gma.System.MouseKeyHook;
-using PaddleOCRSharp;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -35,13 +34,16 @@ V1.1内容
         {
             Thread.Sleep(5000);
             KeyMouseUtil.MouseClick();
-            Thread.Sleep(2000);
-            KeyMouseUtil.MouseClick();
-            Thread.Sleep(2000);
-            KeyMouseUtil.MouseClick();
-            Thread.Sleep(2000);
+            //dm dm = new dm(); // 创建对象
+            //dm.SetMouseDelay("normal", 120);
+            //dm.SetMouseDelay("windows", 120);
+            //dm.SetMouseDelay("dx", 120);
+            //dm.MoveTo(400,400);
+            ////dm.KeyPress((int)Keys.Space);
+            ////dm.LeftClick();
+            //Thread.Sleep(100);
+            //dm.ReleaseObj();
             return;
-
             if (!IsEnd)
                 return;
             AutoClick();

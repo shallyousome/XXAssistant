@@ -6,12 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>True</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AntdUI" Version="1.4.4" />
     <PackageReference Include="MouseKeyHook" Version="5.7.1" />
-    <PackageReference Include="PaddleOCRSharp" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

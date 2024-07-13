@@ -1,5 +1,4 @@
 using Gma.System.MouseKeyHook;
-using PaddleOCRSharp;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
