@@ -19,13 +19,7 @@ V1.1内容
     {
         private int i_Interval = 200;
         private bool IsEnd = true;//操作是否已完成
-        //ocr
-        //private PaddleOCREngine engine;
-        //private PaddleStructureEngine structengine;
-        /*
-         保存计时配置
-         
-         */
+
         public NuhaiClock(bool top)
         {
             InitializeComponent();

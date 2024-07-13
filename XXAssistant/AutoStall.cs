@@ -21,9 +21,6 @@ V1.1内容
     {
         private int i_Interval = 200;
         private bool IsEnd = true;//操作是否已完成
-        ////ocr
-        //private PaddleOCREngine engine;
-        //private PaddleStructureEngine structengine;
         public AutoStall(bool top)
         {
             InitializeComponent();
@@ -33,32 +30,7 @@ V1.1内容
             //加载列表
             //如果列表为空,选中扫描 否则选中定价
             //可调整抓图间隔
-            #region OCR
-            ////自带轻量版中英文模型V4模型
-            //OCRModelConfig config = null;
-            ////OCR参数
-            //OCRParameter oCRParameter = new OCRParameter();
-            //oCRParameter.cpu_math_library_num_threads = 10;//预测并发线程数
-            //oCRParameter.enable_mkldnn = true;
-            //oCRParameter.cls = false; //是否执行文字方向分类；默认false
-            //oCRParameter.det = true;//是否开启文本框检测，用于检测文本块
-            //oCRParameter.use_angle_cls = false;//是否开启方向检测，用于检测识别180旋转
-            //oCRParameter.det_db_score_mode = true;//是否使用多段线，即文字区域是用多段线还是用矩形，
-            //oCRParameter.max_side_len = 960;
-            //oCRParameter.rec_img_h = 48;
-            //oCRParameter.rec_img_w = 320;
-            //oCRParameter.det_db_thresh = 0.3f;
-            //oCRParameter.det_db_box_thresh = 0.618f;
 
-            ////初始化OCR引擎
-            //engine = new PaddleOCREngine(config, oCRParameter);
-
-            ////模型配置，使用默认值
-            //StructureModelConfig structureModelConfig = null;
-            ////表格识别参数配置，使用默认值
-            //StructureParameter structureParameter = new StructureParameter();
-            //structengine = new PaddleStructureEngine(structureModelConfig, structureParameter);
-            #endregion
 
         }
         /// <summary>
@@ -175,13 +147,7 @@ V1.1内容
                         continue;
                     //识别内容
                     var bmp=new Bitmap(filePath);                 
-                    ////截图物品说明部分 
-                    //OCRResult ocrResult = engine.DetectText(bmp);
-                    //var totalText = "";
-                    //foreach (var item in ocrResult.TextBlocks)
-                    //{
-                    //    totalText += item.Text + " ";
-                    //}              
+               
 
                 }
                 //持久化
